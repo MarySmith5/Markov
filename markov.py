@@ -1,7 +1,7 @@
 """Generate Markov text from text files."""
 
 from random import choice
-
+file_path = "green-eggs.txt"
 
 def open_and_read_file(file_path):
     """Take file path as string; return text as string.
@@ -9,11 +9,14 @@ def open_and_read_file(file_path):
     Takes a string that is a file path, opens the file, and turns
     the file's contents as one string of text.
     """
-
-    contents = open(file_path).read()
-   
+    file = open(file_path)
+    contents = file.read()
+    file.close()
+    
     
     return contents
+
+text_string = open_and_read_file(file_path)
 
 
 
@@ -44,7 +47,6 @@ def make_chains(text_string):
 
     chains = {}
     
-    
     words = text_string.split()
 
     #words.append(None)
@@ -61,9 +63,7 @@ def make_chains(text_string):
     return chains
 
 
-chains = make_chains(open_and_read_file('gettysburg.txt'))
-
-
+chains = make_chains(text_string)
 
 
 
@@ -89,8 +89,8 @@ def make_text(chains):
 
     return ' '.join(words)
 
-sentence = make_text(chains)
-print(sentence)
+#sentence = make_text(chains)
+print(make_text(chains))
 
 
 # input_path = 'green-eggs.txt'
